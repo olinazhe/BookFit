@@ -1,7 +1,7 @@
 import path from "path";
 import express, { Express } from "express";
 import cors from "cors";
-import { WeatherResponse } from "@full-stack/types";
+import { BookData } from "@full-stack/types";
 import fetch from "node-fetch";
 
 const app: Express = express();
@@ -12,29 +12,22 @@ const port = 8080;
 app.use(cors());
 app.use(express.json());
 
-type WeatherData = {
-    latitude: number;
-    longitude: number;
-    timezone: string;
-    timezone_abbreviation: string;
-    current: {
-        time: string;
-        interval: number;
-        precipitation: number;
-    };
-};
-
-app.get("/weather", async (req, res) => {
-    console.log("GET /api/weather was called");
+app.get("/read", async (req, res) => {
+    console.log("Server-side code triggered");
+    const searchTerm = req.query.q as string; 
+    console.log("GET /api/read/ was called");
+    if (!searchTerm) {
+        return res.status(400).json({ error: "Search term is required" });
+      }    
     try {
         const response = await fetch(
-            "https://api.open-meteo.com/v1/forecast?latitude=40.7411&longitude=73.9897&current=precipitation&temperature_unit=fahrenheit&windspeed_unit=mph&timezone=America%2FNew_York&forecast_days=1"
+            `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`
         );
-        const data = (await response.json()) as WeatherData;
-        const output: WeatherResponse = {
-            raining: data.current.precipitation > 0.5,
-        };
-        res.json(output);
+        if (!response.ok) {
+            throw new Error("Failed to fetch data from Google Books API");
+          }      
+        const data = (await response.json()) as BookData;
+        res.json(data);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Something went wrong" });

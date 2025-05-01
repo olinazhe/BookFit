@@ -94,7 +94,10 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
   return (
     <Header height={60}>
       <Container className={classes.header}>
-        <img src={BookLogo} alt="BookFit Logo" width={28} height={28} />
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+          <img src={BookLogo} alt="BookFit Logo" width={28} height={28} />
+          <span style={{ fontWeight: "bold" }}>BookFit</span>
+        </div>
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
