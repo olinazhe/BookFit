@@ -1,7 +1,5 @@
-import React from "react";
 import Card from "../components/tracking-cards";
-import BooksReadCard from "../components/readBooks"; 
-
+import BooksReadCard from "../components/readBooks";
 const HomePage = () => (
   <body>
     <div className="flex-container-column">

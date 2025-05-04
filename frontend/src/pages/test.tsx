@@ -4,7 +4,6 @@ const SocialButton = () => {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [showReadingCircles, setShowReadingCircles] = useState(false);
 
-  // Mock data for the leaderboard
   const leaderboardData = [
     {
       id: 1,
