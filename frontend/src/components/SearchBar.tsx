@@ -6,6 +6,35 @@ export default function SearchBar() {
   const [text, setText] = useState<string>(""); // State for search input
   const [books, setBooks] = useState<BookData[]>([]); // State for storing books from server
   const [error, setError] = useState<string | null>(null); // State for errors
+  const getReadingCircleBooks = () => {
+    const storedBooks = localStorage.getItem("readingCircleBooks");
+    return storedBooks ? JSON.parse(storedBooks) : [];
+  };
+  const joinCircle = (book) => {
+    // Return a function for the onClick handler
+    return () => {
+      // Get current reading circle books
+      const circleBooks = getReadingCircleBooks();
+
+      // Check if book is already in the circle to avoid duplicates
+      if (!circleBooks.some((b) => b.id === book.id)) {
+        // Add the new book
+        circleBooks.push({
+          id: book.id,
+          title: book.title,
+          authors: book.authors,
+        });
+
+        // Save back to localStorage
+        localStorage.setItem("readingCircleBooks", JSON.stringify(circleBooks));
+
+        // Show feedback to user
+        alert(`Added "${book.title}" to your reading circle!`);
+      } else {
+        alert("This book is already in your reading circle!");
+      }
+    };
+  };
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -107,6 +136,7 @@ export default function SearchBar() {
               <button>Read</button>
               <button>Want to Read</button>
               <button>Reading</button>
+              <button onClick={joinCircle(book)}>Join Reading Circle</button>
             </li>
           ))}
         </ul>

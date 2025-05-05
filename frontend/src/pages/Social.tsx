@@ -1,28 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SocialButton = () => {
   const [onLeaderboard, setLeaderboard] = useState(false);
   const [onReadingCircles, setReadingCircles] = useState(false);
   const [onFriends, setFriends] = useState(false);
+  const [circleBooks, setCircleBooks] = useState(null);
 
+  useEffect(() => {
+    const storedBooks = localStorage.getItem("readingCircleBooks");
+    if (storedBooks) {
+      setCircleBooks(JSON.parse(storedBooks));
+    }
+  }, []);
   const leaderboardChart = [
     {
       id: 1,
       rank: 1,
       name: "Amelie",
-      profile: "https://via.placeholder.com/80",
+      profile: "/amelie.png",
     },
     {
       id: 2,
       rank: 2,
       name: "Olina",
-      profile: "https://via.placeholder.com/80",
+      profile: "/olina.png",
     },
     {
       id: 3,
       rank: 3,
       name: "Chris",
-      profile: "https://via.placeholder.com/80",
+      profile: "/chris.png",
     },
   ];
 
@@ -66,7 +73,6 @@ const SocialButton = () => {
             maxWidth: "800px",
             backgroundColor: "white",
             borderRadius: "8px",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
             padding: "20px",
             marginTop: "20px",
             zIndex: 10,
@@ -87,7 +93,6 @@ const SocialButton = () => {
                 background: "none",
                 border: "none",
                 fontSize: "20px",
-                cursor: "pointer",
               }}
             >
               ×
@@ -271,7 +276,6 @@ const SocialButton = () => {
             maxWidth: "800px",
             backgroundColor: "white",
             borderRadius: "8px",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
             padding: "20px",
             marginTop: "20px",
             zIndex: 10,
@@ -292,26 +296,43 @@ const SocialButton = () => {
                 background: "none",
                 border: "none",
                 fontSize: "20px",
-                cursor: "pointer",
               }}
             >
               ×
             </button>
           </div>
-
-          <div
-            style={{
-              height: "200px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "#f9f9f9",
-              borderRadius: "4px",
-              margin: "20px 0",
-            }}
-          >
-            <p style={{ color: "#888" }}>No reading circles to display</p>
-          </div>
+          {circleBooks.length > 0 ? (
+            <div style={{ margin: "20px 0" }}>
+              <h3>Your Reading Circle Books</h3>
+              <ul style={{ padding: "0 0 0 20px" }}>
+                {circleBooks.map((book) => (
+                  <li key={book.id} style={{ margin: "10px 0" }}>
+                    <strong>{book.title}</strong>
+                    {book.authors && (
+                      <span style={{ color: "#666" }}>
+                        {" "}
+                        by {book.authors.join(", ")}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <div
+              style={{
+                height: "200px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "#f9f9f9",
+                borderRadius: "4px",
+                margin: "20px 0",
+              }}
+            >
+              <p style={{ color: "#888" }}>No reading circles to display</p>
+            </div>
+          )}
         </div>
       )}
 
@@ -326,7 +347,6 @@ const SocialButton = () => {
             maxWidth: "800px",
             backgroundColor: "white",
             borderRadius: "8px",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
             padding: "20px",
             marginTop: "20px",
             zIndex: 10,
@@ -347,7 +367,6 @@ const SocialButton = () => {
                 background: "none",
                 border: "none",
                 fontSize: "20px",
-                cursor: "pointer",
               }}
             >
               ×
