@@ -1,4 +1,5 @@
 import SearchBar from "../components/SearchBar";
+import {BookProvider} from "../components/BookCall";
 
 const UpdateBooksPage = () => (
   <body>
@@ -6,7 +7,9 @@ const UpdateBooksPage = () => (
       <h1>Search Books</h1>
     </div>
     <div className="flex-container-row">
-      <SearchBar />
+      <BookProvider>
+        <SearchBar />
+      </BookProvider>
     </div>
   </body>
 );

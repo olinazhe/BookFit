@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { FormEvent } from "react";
 import { BookData } from "@full-stack/types";
+import { useBookContext } from "./BookCall";
+
 
 export default function SearchBar() {
   const [text, setText] = useState<string>(""); // State for search input
   const [books, setBooks] = useState<BookData[]>([]); // State for storing books from server
   const [error, setError] = useState<string | null>(null); // State for errors
+  const { handleRead } = useBookContext(); // Track read books
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -104,7 +107,7 @@ export default function SearchBar() {
               <strong>{book.title}</strong>
               <p>{book.authors.join(", ")}</p>
               <p>{book.description}</p>
-              <button>Read</button>
+              <button onClick={() => handleRead(book)}>Read</button>
               <button>Want to Read</button>
               <button>Reading</button>
             </li>

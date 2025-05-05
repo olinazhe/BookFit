@@ -1,5 +1,8 @@
 import Card from "../components/tracking-cards";
 import BooksReadCard from "../components/readBooks";
+import SearchBar from "../components/SearchBar";
+import { BookProvider } from "../components/BookCall";
+
 const HomePage = () => (
   <body>
     <div className="flex-container-column">
@@ -15,7 +18,9 @@ const HomePage = () => (
       <Card title="Goals Completed" num="0" />
     </div>
     <div className="flex-container-row">
+    <BookProvider>
       <BooksReadCard />
+    </BookProvider>
     </div>
   </body>
 );
