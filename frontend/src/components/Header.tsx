@@ -88,16 +88,10 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
 
   // if logged in then you should sign out, if not sign in
   const handleLoginClick = async () => {
-    console.log("Current auth state:", isLoggedIn, user);
-
     if (isLoggedIn) {
-      console.log("Attempting to sign out");
       await signOut();
-      console.log("After sign out");
     } else {
-      console.log("Attempting to sign in");
-      const result = await signIn();
-      console.log("Sign in result:", result);
+      await signIn();
     }
   };
 

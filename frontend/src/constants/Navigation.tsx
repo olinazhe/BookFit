@@ -1,4 +1,4 @@
-import Goals from "../pages/Goals";
+import Discover from "../pages/Discover";
 import Social from "../pages/Social";
 import Dashboard from "../pages/Dashboard";
 
@@ -27,9 +27,9 @@ export const PATHS: {
     element: <Dashboard />,
   },
   {
-    link: "/goals",
-    label: "Goals",
-    element: <Goals />,
+    link: "/discover",
+    label: "Discover",
+    element: <Discover />,
   },
   {
     link: "/social",

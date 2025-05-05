@@ -21,6 +21,11 @@ export default function SearchBar() {
         id: item.id,
         title: item.volumeInfo.title,
         authors: item.volumeInfo.authors || [],
+        thumbnail:
+          item.volumeInfo?.imageLinks?.thumbnail ||
+          item.volumeInfo?.imageLinks?.smallThumbnail ||
+          null,
+        description: item.volumeInfo?.description || "No description available",
       }));
       //console.log(formattedBooks)
       setBooks(formattedBooks); // Set the books state with server data
@@ -49,9 +54,56 @@ export default function SearchBar() {
       <div className="content">
         <ul>
           {books.map((book) => (
-            <li key={book.id}>
+            <li
+              key={book.id}
+              style={{
+                margin: "20px 0",
+                padding: "15px",
+                borderRadius: "8px",
+                boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                backgroundColor: "#fff",
+              }}
+            >
+              <div style={{ display: "flex", gap: "15px" }}>
+                {/* Book cover image */}
+                <div
+                  style={{
+                    minWidth: "120px",
+                    height: "180px",
+                    backgroundColor: "#f0f0f0",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: "4px",
+                    overflow: "hidden",
+                  }}
+                >
+                  {book.thumbnail ? (
+                    <img
+                      src={book.thumbnail}
+                      alt={`Cover of ${book.title}`}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  ) : (
+                    <span
+                      style={{
+                        color: "#999",
+                        fontSize: "12px",
+                        textAlign: "center",
+                      }}
+                    >
+                      No cover available
+                    </span>
+                  )}
+                </div>
+              </div>
               <strong>{book.title}</strong>
               <p>{book.authors.join(", ")}</p>
+              <p>{book.description}</p>
             </li>
           ))}
         </ul>
