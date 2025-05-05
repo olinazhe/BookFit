@@ -41,20 +41,12 @@ const HomePage = () => {
           <button
             id="small-box"
             onClick={yearlyUpdate}
-            style={{
-              backgroundColor: "white",
-              fontWeight: "bold",
-            }}
           >
             Yearly
           </button>
           <button
             id="small-box"
             onClick={monthlyUpdate}
-            style={{
-              backgroundColor: "white",
-              fontWeight: "bold",
-            }}
           >
             Monthly
           </button>
@@ -69,11 +61,11 @@ const HomePage = () => {
             width: "90%",
             maxWidth: "1200px",
             backgroundColor: "white",
-            borderRadius: "3px",
+            borderRadius: "8px",
             padding: "20px",
             marginTop: "10px",
             zIndex: 10,
-            border: "1px solid rgb(0, 0, 0)",
+            border: "3px solid rgb(35, 156, 8)",
           }}
         >
           <div
@@ -101,7 +93,7 @@ const HomePage = () => {
               x
             </button>
           </div>
-          <div style={{ display: "flex", gap: "20px", marginBottom: "20px" }}>
+          <div style={{ display: "flex", gap: "20px", marginBottom: "20px"}}>
             <Card title="Books Read" num="100" />
             <Card title="Goals Completed" num="0" />
             <Card title="Reading Streaks" num="45" />
@@ -121,11 +113,11 @@ const HomePage = () => {
             width: "90%",
             maxWidth: "1200px",
             backgroundColor: "white",
-            borderRadius: "3px",
+            borderRadius: "8px",
             padding: "20px",
             marginTop: "10px",
             zIndex: 10,
-            border: "1px solid rgb(0, 0, 0)",
+            border: "3px solid rgb(35, 156, 8)",
           }}
         >
           <div

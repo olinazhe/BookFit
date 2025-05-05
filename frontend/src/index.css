@@ -36,7 +36,7 @@ button {
     border-radius: 8px;
     padding: 0.5rem 0.75rem;
     box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
-    background-color: rgba(201, 201, 201, 0.479);
+    background-color: rgba(28, 139, 5, 0.479);
     line-height: 1.5;
     margin: 0;
 }
@@ -230,12 +230,12 @@ i {
 }
 
 #sidebar nav a.active {
-    background: hsl(224, 98%, 58%);
+    background: hsl(106, 78%, 40%);
     color: white;
 }
 
 #sidebar nav a.pending {
-    color: hsl(224, 98%, 58%);
+    color: hsl(131, 98%, 58%);
 }
 
 #detail {
@@ -272,13 +272,13 @@ i {
 
 #contact h1:focus {
     outline: none;
-    color: hsl(224, 98%, 58%);
+    color: hsl(131, 77%, 51%);
 }
 
 #contact a[href*="twitter"] {
     display: flex;
     font-size: 1.5rem;
-    color: #3992ff;
+    color: #2fde3d;
     text-decoration: none;
 }
 #contact a[href*="twitter"]:hover {
@@ -426,7 +426,7 @@ i {
   }
 
 .trackingCard {
-    border: 1px black solid;
+    border: 3px rgb(36, 153, 10) solid;
     border-radius: 8px;
     padding: 20px;
     text-align: left;
