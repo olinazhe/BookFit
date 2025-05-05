@@ -104,6 +104,9 @@ export default function SearchBar() {
               <strong>{book.title}</strong>
               <p>{book.authors.join(", ")}</p>
               <p>{book.description}</p>
+              <button>Read</button>
+              <button>Want to Read</button>
+              <button>Reading</button>
             </li>
           ))}
         </ul>
